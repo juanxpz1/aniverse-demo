@@ -6,14 +6,14 @@ export function Footer() {
   return (
     <footer className="mt-auto w-full border-t border-white/5 bg-background relative overflow-hidden">
       {/* Decorative gradient top border */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-primary/50 to-transparent" />
       
       <div className="container mx-auto px-4 py-12 md:px-8">
         <div className="grid gap-8 md:grid-cols-4 lg:gap-12">
           
           <div className="flex flex-col gap-4 md:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-secondary text-white shadow-lg shadow-primary/30">
                 <Play className="h-4 w-4 ml-0.5" fill="currentColor" />
               </div>
               <span className="text-xl font-bold tracking-tight">

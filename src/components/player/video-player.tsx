@@ -27,11 +27,14 @@ export function VideoPlayer({ servers, poster }: VideoPlayerProps) {
 
     if (activeServer.type === 'hls' && Hls.isSupported()) {
       const hls = new Hls();
+
       hls.loadSource(activeServer.url);
       hls.attachMedia(video);
+
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         setIsLoading(false);
       });
+
       hls.on(Hls.Events.ERROR, () => {
         setError(true);
         setIsLoading(false);
@@ -43,12 +46,19 @@ export function VideoPlayer({ servers, poster }: VideoPlayerProps) {
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       // Native HLS support (Safari)
       video.src = activeServer.url;
-      video.addEventListener('loadedmetadata', () => {
+
+      const handleLoadedMetadata = () => {
         setIsLoading(false);
-      });
+      };
+
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
     } else if (activeServer.type === 'mp4') {
       video.src = activeServer.url;
-      setIsLoading(false);
+      // El loading se quitará automáticamente mediante onPlaying
     }
   }, [activeServer]);
 
@@ -70,11 +80,11 @@ export function VideoPlayer({ servers, poster }: VideoPlayerProps) {
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
           </div>
         )}
-        
+
         {error && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-black/90">
             <p className="text-red-400">Error al cargar el video.</p>
-            <button 
+            <button
               onClick={() => setError(false)}
               className="text-sm text-primary hover:underline"
             >
@@ -106,7 +116,10 @@ export function VideoPlayer({ servers, poster }: VideoPlayerProps) {
 
       {/* Server Selection */}
       <div className="flex flex-col gap-2 rounded-xl border border-white/5 bg-white/5 p-4">
-        <h3 className="text-sm font-medium text-muted-foreground">Opciones de Servidor</h3>
+        <h3 className="text-sm font-medium text-muted-foreground">
+          Opciones de Servidor
+        </h3>
+
         <div className="flex flex-wrap gap-2">
           {servers.map((server, idx) => (
             <button
