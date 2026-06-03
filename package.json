@@ -1,0 +1,23 @@
+{
+  "name": "aniverse",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.40.0",
+    "hls.js": "^1.6.16",
+    "lucide-react": "^1.17.0",
+    "swr": "^2.4.1",
+    "tailwind-merge": "^3.6.0",
+    "use-debounce": "^10.1.1",
+    "zustand": "^5.0.14"
+  }
+}
