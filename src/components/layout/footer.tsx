@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Play, Github, Twitter, MessageSquare } from 'lucide-react';
+import { Play, MessageSquare } from 'lucide-react';
+import { FaGithub, FaXTwitter } from 'react-icons/fa6';
 
 export function Footer() {
   return (
@@ -24,13 +25,13 @@ export function Footer() {
             </p>
             <div className="flex gap-4 mt-2">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+                <FaXTwitter className="h-5 w-5" />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <MessageSquare className="h-5 w-5" />
               </a>
               <a href="https://github.com/FxxMorgan/anime1v-api" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                <Github className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
               </a>
             </div>
           </div>
