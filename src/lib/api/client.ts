@@ -2,6 +2,7 @@ import { Anime, Episode, SearchResult, VideoServer, Genre } from '@/types/anime'
 import { MOCK_ANIMES, MOCK_EPISODES, MOCK_GENRES, MOCK_LATEST_EPISODES } from './mock-data';
 
 const API_URL = process.env.NEXT_PUBLIC_ANIME_API_URL || '';
+const API_KEY = process.env.NEXT_PUBLIC_ANIME_API_KEY;
 const USE_MOCK = !API_URL;
 
 /**
@@ -14,6 +15,7 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> 
       ...options,
       headers: {
         'Content-Type': 'application/json',
+        ...(API_KEY ? { 'x-api-key': API_KEY } : {}),
         ...options?.headers,
       },
       next: { revalidate: 3600, ...options?.next } // Default cache
