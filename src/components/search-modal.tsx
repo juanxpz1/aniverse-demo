@@ -128,7 +128,7 @@ export function SearchModal() {
             </div>
           ) : !isLoading ? (
             <div className="px-4 py-10 text-center text-sm text-muted-foreground">
-            {`No se encontraron resultados para "${query}"`}
+              No se encontraron resultados para &quot;{query}&quot;
             </div>
           ) : null}
         </div>

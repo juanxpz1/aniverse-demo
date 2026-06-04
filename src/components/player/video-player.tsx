@@ -58,7 +58,15 @@ export function VideoPlayer({ servers, poster }: VideoPlayerProps) {
       };
     } else if (activeServer.type === 'mp4') {
       video.src = activeServer.url;
-      // El loading se quitará automáticamente mediante onPlaying
+
+      const handleLoadedMetadata = () => {
+        setIsLoading(false);
+      };
+
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
     }
   }, [activeServer]);
 

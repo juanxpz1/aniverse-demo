@@ -1,9 +1,10 @@
 import { Anime, Episode, SearchResult, VideoServer, Genre } from '@/types/anime';
 import { MOCK_ANIMES, MOCK_EPISODES, MOCK_GENRES, MOCK_LATEST_EPISODES } from './mock-data';
 
-const API_URL = process.env.NEXT_PUBLIC_ANIME_API_URL || '';
+const rawApiUrl = process.env.NEXT_PUBLIC_ANIME_API_URL ?? '';
+const API_URL = rawApiUrl.trim().replace(/\/+$|^\s+|\s+$/g, '');
 const API_KEY = process.env.NEXT_PUBLIC_ANIME_API_KEY;
-const USE_MOCK = !API_URL;
+const USE_MOCK = !API_URL || API_URL === '/';
 
 /**
  * Helper to fetch data from the actual API

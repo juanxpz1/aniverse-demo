@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Anime } from '@/types/anime';
-import { Star, Play, Heart } from 'lucide-react';
+import { Star, Play } from 'lucide-react';
 
 export function AnimeCard({ anime }: { anime: Anime }) {
   return (

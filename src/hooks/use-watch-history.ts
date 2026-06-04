@@ -1,6 +1,5 @@
 import { useLocalStorage } from './use-local-storage';
 import { useCallback } from 'react';
-import { Episode, Anime } from '@/types/anime';
 
 export interface WatchProgress {
   animeSlug: string;
