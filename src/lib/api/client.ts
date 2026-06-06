@@ -1,4 +1,5 @@
 import { Anime, Episode, SearchResult, VideoServer, Genre } from '@/types/anime';
+import { slugify } from '@/lib/utils';
 import { MOCK_ANIMES, MOCK_EPISODES, MOCK_GENRES, MOCK_LATEST_EPISODES } from './mock-data';
 
 const rawApiUrl = process.env.NEXT_PUBLIC_ANIME_API_URL ?? '';
@@ -137,5 +138,21 @@ export async function getGenres(): Promise<Genre[]> {
     return await fetchApi<Genre[]>('/genres');
   } catch {
     return MOCK_GENRES;
+  }
+}
+
+export async function getAnimesByGenre(slug: string): Promise<Anime[]> {
+  if (USE_MOCK) {
+    return MOCK_ANIMES.filter((anime) =>
+      anime.genres.some((genre) => slugify(genre) === slug)
+    );
+  }
+
+  try {
+    return await fetchApi<Anime[]>(`/genres/${encodeURIComponent(slug)}/anime`);
+  } catch {
+    return MOCK_ANIMES.filter((anime) =>
+      anime.genres.some((genre) => slugify(genre) === slug)
+    );
   }
 }
