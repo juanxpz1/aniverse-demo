@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 's4.anilist.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.anilist.co',
+        pathname: '/**',
       },
     ],
   },
